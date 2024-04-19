@@ -16,7 +16,7 @@ Commands can be implemented with the CommandExecutionInterface.
 A CommandExecutionInterface consists of an endpoint and callbacks for GET, GET-DATA, SET, SET-DATA commands.\
 An endpoint is able to consist of several parts e.g. *device/&ast;/status*
 
-You can use the brazer initializer list mechanism and lambdas for a clean creation.
+You can use brace initialization and lambdas for a clean command creation.
   ```
   CommandExecutionInterface cei = {
     {"device/*/status"},

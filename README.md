@@ -20,16 +20,16 @@ You can use brace initialization and lambdas for a clean command creation.
   ```
   CommandExecutionInterface cei = {
     {"device/*/status"},
-    [](Command & command){
+    [](Command &command){
       //SET Callback
     },
-    [](Command & command){
+    [](Command &command){
       //GET Callback
     },
-    [](Command & command){
+    [](Command &command){
       //SET-DATA Callback
     },
-    [](Command & command){
+    [](Command &command){
       //GET-DATA Callback
     }
   }

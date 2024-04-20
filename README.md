@@ -11,6 +11,15 @@ With this library you can create a cross platform tcp server and a command execu
 - SET-DATA &lt;endpoint&gt;=&lt;expectedLength&gt;
   <br>Should be used to transmit larger amount of data. After the SET-DATA command the server expects the &lt;expectedLength&gt; amount of data.
 
+<!-- TechStack -->
+
+## Tech Stack
+<p align="left">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=cpp,cmake,clion&perline=13" />
+  </a>
+</p>
+
 ## Command implementation
 Commands can be implemented with the CommandExecutionInterface. 
 A CommandExecutionInterface consists of an endpoint and callbacks for GET, GET-DATA, SET, SET-DATA commands.\

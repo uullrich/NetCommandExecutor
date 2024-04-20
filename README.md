@@ -16,7 +16,7 @@ Commands can be implemented with the CommandExecutionInterface.
 A CommandExecutionInterface consists of an endpoint and callbacks for GET, GET-DATA, SET, SET-DATA commands.\
 An endpoint is able to consist of several parts e.g. *device/&ast;/status*
 
-You can use brace initialization and lambdas for a clean command creation.
+You can use brace initialization and lambdas for a clean command implementation.
   ```
   CommandExecutionInterface cei = {
     {"device/*/status"},
@@ -36,4 +36,20 @@ You can use brace initialization and lambdas for a clean command creation.
   ```
 
 ## Dependencies
-The only dependency is the boost library.
+The only build dependency is the boost library in version > 1.70.0.
+
+## CMake usage example
+- Compiler with C++20 support
+- Go to your projects root directory
+- ``mkdir lib``
+- ``cd lib``
+- Add this library as git submodule: ``git submodule add git@github.com:uullrich/NetCommandExecutor.git``
+- Add the following parts to your *CMakeLists.txt*:
+
+```
+//...
+add_subdirectory(libs/NetCommandExecutor)
+include_directories(libs/NetCommandExecutor/include)
+//...
+target_link_libraries(YourProject NetCommandExecutor)
+```

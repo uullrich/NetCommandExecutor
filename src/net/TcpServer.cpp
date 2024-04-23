@@ -27,13 +27,13 @@ TcpServer::TcpServer(unsigned short port, CommandReceivedHandler &commandHandler
 }
 
 awaitable<void> TcpServer::listener(tcp::acceptor acceptor) {
-    do {
+    while(true) {
         auto socket = co_await acceptor.async_accept(use_awaitable);
         auto client = std::make_shared<Client>(std::move(socket), _commandHandler, *this);
         client->initHandlers();
 
         _clients.emplace_back(client);
-    } while (true);
+    }
 }
 
 ClientList TcpServer::getClients() {

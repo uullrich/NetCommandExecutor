@@ -82,11 +82,23 @@ awaitable<void> Client::onReceiveHandler() {
             command.client = shared_from_this();
 
             if (command.type == CommandType::SET_DATA) {
-                co_await boost::asio::async_read(_socket,
-                                                 boost::asio::dynamic_buffer(command.data),
-                                                 boost::asio::transfer_exactly(
-                                                         std::stoi(command.value)),
-                                                 use_awaitable);
+                int expectedBytes = std::stoi(command.value);
+                if (_receiveBuffer.size() >= expectedBytes) {
+                    command.data.insert(command.data.end(), _receiveBuffer.begin(), _receiveBuffer.begin() + expectedBytes);
+                    _receiveBuffer.erase(_receiveBuffer.begin(), _receiveBuffer.begin() + expectedBytes);
+                } else {
+                    int missingBytes = expectedBytes - _receiveBuffer.size();
+                    command.data.insert(command.data.end(), _receiveBuffer.begin(), _receiveBuffer.end());
+                    _receiveBuffer.erase(_receiveBuffer.begin(), _receiveBuffer.end());
+
+                    co_await boost::asio::async_read(_socket,
+                                                     boost::asio::dynamic_buffer(_receiveBuffer),
+                                                     boost::asio::transfer_exactly(missingBytes),
+                                                     use_awaitable);
+
+                    command.data.insert(command.data.end(), _receiveBuffer.begin(), _receiveBuffer.begin() + missingBytes);
+                    _receiveBuffer.erase(_receiveBuffer.begin(), _receiveBuffer.begin() + missingBytes);
+                }
             }
 
             if (command.type != CommandType::UNKNOWN) {

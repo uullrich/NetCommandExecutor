@@ -22,6 +22,7 @@ set(PROJECT_SOURCE_DIR "${PROJECT_SOURCE_DIR}/src" )
 message( "SourceDir: ${PROJECT_SOURCE_DIR}" )
 set(SRC_FILES ${PROJECT_SOURCE_DIR}/net/CommandHandler.cpp
               ${PROJECT_SOURCE_DIR}/net/Client.cpp
+              ${PROJECT_SOURCE_DIR}/net/Command.cpp
               ${PROJECT_SOURCE_DIR}/net/TcpServer.cpp
               ${PROJECT_SOURCE_DIR}/net/CommandInterpreter.cpp
               ${PROJECT_SOURCE_DIR}/net/CommandExecutor.cpp

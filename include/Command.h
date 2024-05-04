@@ -22,6 +22,14 @@ struct Command {
     std::string value;
     ReceiveBuffer data;
     ClientPtr client;
+
+    void sendValue(const std::string &value);
+
+    void sendData(const std::vector<unsigned char> &data);
+
+    void sendOk();
+
+    void sendError(const std::string &message);
 };
 
 #endif

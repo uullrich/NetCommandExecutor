@@ -38,6 +38,11 @@ void Command::sendData(const std::vector<unsigned char> &data) {
     client->send(data);
 }
 
+void Command::sendData(const std::string & data) {
+    std::vector<unsigned char> rawData(data.begin(), data.end());
+    sendData(rawData);
+}
+
 void Command::sendOk() {
     std::stringstream responseStream;
     switch (type) {

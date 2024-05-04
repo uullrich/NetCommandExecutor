@@ -27,6 +27,8 @@ struct Command {
 
     void sendData(const std::vector<unsigned char> &data);
 
+    void sendData(const std::string & data);
+
     void sendOk();
 
     void sendError(const std::string &message);

@@ -11,6 +11,10 @@ With this library you can create a cross platform tcp server and a command execu
 - SET-DATA &lt;endpoint&gt;=&lt;expectedLength&gt;
   <br>Should be used to transmit larger amount of data. After the SET-DATA command the server expects the &lt;expectedLength&gt; amount of data.
 
+<!-- Usage Example -->
+## Usage example
+  A usage example with a demo implementation can be found <a href="https://github.com/uullrich/NCE_Server_Demo">here</a>.
+
 <!-- TechStack -->
 
 ## Tech Stack

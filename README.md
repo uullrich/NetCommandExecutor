@@ -43,6 +43,15 @@ You can use brace initialization and lambdas for a clean command implementation.
     }
   }
   ```
+Another way to set instance methods as handlers is to use the fluent interface which is provided by the CommandExectionInterface.
+  ```
+    std::vector<CommandExecutionInterface> executionInterfaces;
+    //The order is important!
+    executionInterfaces << (CommandExecutionInterface(this) << Endpoint{"test"} << &ClassName::setHandler << &ClassName::getHandler << &ClassName::setDataHandler << &ClassName::getDataHandler);
+
+    //For unused handlers use NO_RESPONSE
+    executionInterfaces << (CommandExecutionInterface(this) << Endpoint{"another_test"} << NO_RESPONSE::SET << &ClassName::getHandler << NO_RESPONSE::SET_DATA << &ClassName::getDataHandler);
+  ```
 
 ## Dependencies
 The only build dependency is the boost library in version > 1.70.0.

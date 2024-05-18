@@ -26,6 +26,7 @@ set(SRC_FILES ${PROJECT_SOURCE_DIR}/net/CommandHandler.cpp
               ${PROJECT_SOURCE_DIR}/net/TcpServer.cpp
               ${PROJECT_SOURCE_DIR}/net/CommandInterpreter.cpp
               ${PROJECT_SOURCE_DIR}/net/CommandExecutor.cpp
+              ${PROJECT_SOURCE_DIR}/net/CommandExecutionInterface.cpp
 )
 
 add_library(NetCommandExecutor STATIC ${SRC_FILES})

@@ -77,13 +77,6 @@ struct CommandExecutionInterface {
         return *this;
     }
 
-    //Fluent interface for setting the instance
-    template<typename T>
-    CommandExecutionInterface &operator<<(T *inst) {
-        _instance = static_cast<void *>(inst);
-        return *this;
-    }
-
     //Fluent interface for setting no response handlers
     CommandExecutionInterface &operator<<(NO_RESPONSE noResponse) {
 

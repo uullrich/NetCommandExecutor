@@ -11,6 +11,10 @@ With this library you can create a cross platform tcp server and a command execu
 - SET-DATA &lt;endpoint&gt;=&lt;expectedLength&gt;
   <br>Should be used to transmit larger amount of data. After the SET-DATA command the server expects the &lt;expectedLength&gt; amount of data.
 
+<!-- Usage Example -->
+## Usage example
+  A usage example with a demo implementation can be found <a href="https://github.com/uullrich/NCE_Server_Demo">here</a>.
+
 <!-- TechStack -->
 
 ## Tech Stack
@@ -42,6 +46,15 @@ You can use brace initialization and lambdas for a clean command implementation.
       //GET-DATA Callback
     }
   }
+  ```
+Another way to set instance methods as handlers is to use the fluent interface which is provided by the CommandExectionInterface.
+  ```
+    std::vector<CommandExecutionInterface> executionInterfaces;
+    //The order is important!
+    executionInterfaces << (CommandExecutionInterface(this) << Endpoint{"test"} << &ClassName::setHandler << &ClassName::getHandler << &ClassName::setDataHandler << &ClassName::getDataHandler);
+
+    //For unused handlers use NO_RESPONSE
+    executionInterfaces << (CommandExecutionInterface(this) << Endpoint{"another_test"} << NO_RESPONSE::SET << &ClassName::getHandler << NO_RESPONSE::SET_DATA << &ClassName::getDataHandler);
   ```
 
 ## Dependencies
